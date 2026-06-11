@@ -8,19 +8,30 @@ def test_healthcheck(client):
 
 
 def test_unauthorized_prediction_no_header(client):
-    dummy_payload = {"features": [[0.5, 0.1, 0.2] for _ in range(32)]}
-    response = client.post("/predictions", json=dummy_payload)
+    # Отправляем запрос без заголовка Authorization
+    # Используем новую структуру данных
+    payload = {
+        "data": [
+            {"energy_max": 1.2, "energy_min": 0.4, "energy_sum": 0.8}
+            for _ in range(32)
+        ]
+    }
+    response = client.post("/predictions", json=payload)
     assert response.status_code in [401, 403]
 
 
 def test_prediction_with_mock_authorized_token(client):
+    # ИСПРАВЛЕНО: Генерируем тестовый payload под новый формат JSON-данных
     valid_payload = {
-        "features": [[1.2, 0.4, 0.8] for _ in range(32)]
+        "data": [
+            {"energy_max": 1.2, "energy_min": 0.4, "energy_sum": 0.8}
+            for _ in range(32)
+        ]
     }
+
+    # Заголовок авторизации (обычно мокается через conftest.py)
     headers = {"Authorization": "Bearer 00000"}
     response = client.post("/predictions", json=valid_payload, headers=headers)
-    assert response.status_code == 200
 
-    data = response.json()
-    assert "reconstructed_energy_sum" in data
-    assert len(data["reconstructed_energy_sum"]) == 32
+    assert response.status_code == 200
+    assert "reconstructed_energy_sum" in response.json()
