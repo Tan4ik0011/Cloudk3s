@@ -24,13 +24,23 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    # ИСПРАВЛЕНО: Создаем реальные мини-объекты вместо пустых файлов по 0 байт
     - name: Create mock artifacts for testing
       run: |
-        # Создаем временную фейковую папку и файлы весов, 
-        # чтобы тесты pytest не падали из-за отсутствия обученной модели на сервере GitHub
         mkdir -p models
-        touch models/cvae_model.pt
-        touch models/scaler.pkl
+        python -c "
+        import joblib, torch, sklearn.preprocessing
+        from src.model import ConditionalVAE
+        
+        # Создаем и сохраняем валидный обученный скейлер
+        scaler = sklearn.preprocessing.StandardScaler()
+        scaler.fit([[1.0, 1.0, 1.0]])
+        joblib.dump(scaler, 'models/scaler.pkl')
+        
+        # Создаем и сохраняем валидный state_dict модели
+        model = ConditionalVAE(window_size=32, num_features=3, target_idx=2)
+        torch.save(model.state_dict(), 'models/cvae_model.pt')
+        "
 
     - name: Run tests with pytest
       run: |
@@ -40,7 +50,6 @@ jobs:
   build-and-push:
     needs: test # Выполняется только если тесты успешно пройдены
     runs-on: ubuntu-latest
-    # Запускаем сборку только при пуше в основную ветку (main или master)
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     steps:
     - name: Checkout code
