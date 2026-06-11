@@ -1,0 +1,164 @@
+{
+  "data": [
+    {
+      "energy_max": 0.409,
+      "energy_sum": 4.902999999999999,
+      "energy_min": 0.038
+    },
+    {
+      "energy_max": 0.396,
+      "energy_sum": 4.425,
+      "energy_min": 0.001
+    },
+    {
+      "energy_max": 0.478,
+      "energy_sum": 3.2390000000000003,
+      "energy_min": 0.011
+    },
+    {
+      "energy_max": 0.7929999999999999,
+      "energy_sum": 13.858,
+      "energy_min": 0.072
+    },
+    {
+      "energy_max": 0.853,
+      "energy_sum": 7.936,
+      "energy_min": 0.12
+    },
+    {
+      "energy_max": 0.237,
+      "energy_sum": 2.2789999999999986,
+      "energy_min": 0.008
+    },
+    {
+      "energy_max": 0.5379999999999999,
+      "energy_sum": 3.944,
+      "energy_min": 0.015
+    },
+    {
+      "energy_max": 2.1489999,
+      "energy_sum": 28.5449999,
+      "energy_min": 0.126
+    },
+    {
+      "energy_max": 0.46,
+      "energy_sum": 12.066,
+      "energy_min": 0.127
+    },
+    {
+      "energy_max": 0.24,
+      "energy_sum": 4.1640000000000015,
+      "energy_min": 0.028
+    },
+    {
+      "energy_max": 0.129,
+      "energy_sum": 2.5500000000000003,
+      "energy_min": 0.028
+    },
+    {
+      "energy_max": 1.4069999,
+      "energy_sum": 7.158999900000001,
+      "energy_min": 0.046
+    },
+    {
+      "energy_max": 1.308,
+      "energy_sum": 16.748999999999995,
+      "energy_min": 0.043
+    },
+    {
+      "energy_max": 1.132,
+      "energy_sum": 11.054,
+      "energy_min": 0.07
+    },
+    {
+      "energy_max": 2.0079999,
+      "energy_sum": 14.417,
+      "energy_min": 0.034
+    },
+    {
+      "energy_max": 0.757,
+      "energy_sum": 8.915999999999997,
+      "energy_min": 0.04
+    },
+    {
+      "energy_max": 0.374,
+      "energy_sum": 8.358999999999998,
+      "energy_min": 0.023
+    },
+    {
+      "energy_max": 0.952,
+      "energy_sum": 6.17,
+      "energy_min": 0.025
+    },
+    {
+      "energy_max": 0.496,
+      "energy_sum": 6.677000000000001,
+      "energy_min": 0.059
+    },
+    {
+      "energy_max": 0.638,
+      "energy_sum": 7.212000000000001,
+      "energy_min": 0.027
+    },
+    {
+      "energy_max": 3.3239999,
+      "energy_sum": 104.0540006,
+      "energy_min": 1.281
+    },
+    {
+      "energy_max": 1.319,
+      "energy_sum": 13.026000000000002,
+      "energy_min": 0.043
+    },
+    {
+      "energy_max": 0.245,
+      "energy_sum": 3.905,
+      "energy_min": 0.027
+    },
+    {
+      "energy_max": 1.392,
+      "energy_sum": 16.433,
+      "energy_min": 0.093
+    },
+    {
+      "energy_max": 1.476,
+      "energy_sum": 16.530999799999993,
+      "energy_min": 0.019
+    },
+    {
+      "energy_max": 0.394,
+      "energy_sum": 6.186000000000001,
+      "energy_min": 0.043
+    },
+    {
+      "energy_max": 1.1160001,
+      "energy_sum": 5.796000099999999,
+      "energy_min": 0.021
+    },
+    {
+      "energy_max": 0.628,
+      "energy_sum": 8.827,
+      "energy_min": 0.073
+    },
+    {
+      "energy_max": 0.326,
+      "energy_sum": 5.184000000000001,
+      "energy_min": 0.023
+    },
+    {
+      "energy_max": 0.547,
+      "energy_sum": 7.700999999999998,
+      "energy_min": 0.046
+    },
+    {
+      "energy_max": 0.99,
+      "energy_sum": 12.906000000000004,
+      "energy_min": 0.028
+    },
+    {
+      "energy_max": 2.0380001,
+      "energy_sum": 16.8340001,
+      "energy_min": 0.019
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  # Задача 1: Запуск автоматических тестов
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Create mock artifacts for testing
+      run: |
+        # Создаем временную фейковую папку и файлы весов, 
+        # чтобы тесты pytest не падали из-за отсутствия обученной модели на сервере GitHub
+        mkdir -p models
+        touch models/cvae_model.pt
+        touch models/scaler.pkl
+
+    - name: Run tests with pytest
+      run: |
+        PYTHONPATH=. pytest test/
+
+  # Задача 2: Сборка и отправка Docker-образа в Docker Hub
+  build-and-push:
+    needs: test # Выполняется только если тесты успешно пройдены
+    runs-on: ubuntu-latest
+    # Запускаем сборку только при пуше в основную ветку (main или master)
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: |
+          ${{ secrets.DOCKERHUB_USERNAME }}/cvae-inference-service:latest
